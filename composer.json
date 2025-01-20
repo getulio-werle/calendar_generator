@@ -1,0 +1,17 @@
+{
+    "name": "getulio/calendar_generator",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Getúlio Werle",
+            "email": "getuliowerle10@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "calendar_generator\\Routers\\": ["app/routers"],
+            "calendar_generator\\Controllers\\": ["app/controllers"]
+        }
+    }
+}
