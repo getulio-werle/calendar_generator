@@ -2,6 +2,7 @@ table {
     width: 100%;
     border-collapse: collapse;
     border: 1px solid black;
+    background-color: rgb(230, 230, 230);
 }
 
 th {
@@ -12,9 +13,21 @@ th {
 
 td {
     padding: 5px;
-    font-size: large;
+    font-size: medium;
     font-weight: bold;
     text-align: start;
     vertical-align: top;
     height: 150px;
+}
+
+.sunday {
+    background-color: rgb(233, 216, 172);
+}
+
+.saturday {
+    background-color: rgb(195, 195, 195);
+}
+
+.other_days {
+    background-color: white;
 }

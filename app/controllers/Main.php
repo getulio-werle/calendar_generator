@@ -64,14 +64,38 @@ class Main extends BaseController
                 }
             }
             // check if has events for the day
+            $event_name = null;
             if (in_array($i, $_POST)) {
                 $event_day = array_search($i, $_POST);
                 $event_day_array = explode('_', $event_day);
                 $num = $event_day_array[count($event_day_array) - 1];
                 $event_name = $_POST["new_event_name_$num"];
-                $calendar .= "<td>$i<br>$event_name</td>";
-            } else {
-                $calendar .= "<td>$i</td>";
+                // verify if string > 7, if yes, break the line
+                // to fit in the cell
+                if (strlen($event_name) > 7) {
+                    $number_of_break_rows = intdiv(strlen($event_name), 7);
+                    for ($j = 1; $j <= $number_of_break_rows; $j++) {
+                        if ($j == 1) {
+                            $event_name = substr_replace($event_name, '<br>', 7, 0); // on first pass
+                        } else {
+                            $event_name = substr_replace($event_name, '<br>', (7 * $j) + 4, 0); // +4 because '<br>'
+                        }
+                    }
+                }
+            }
+            // check if day is sunday or saturday
+            switch (date('w', strtotime("$year-$month-$i"))) {
+                case 0:
+                    $calendar .= "<td class='sunday'>$i<br>$event_name</td>";
+                    break;
+                
+                case 6:
+                    $calendar .= "<td class='saturday'>$i<br>$event_name</td>";
+                    break;
+                
+                default:
+                    $calendar .= "<td class='other_days'>$i<br>$event_name</td>";
+                    break;
             }
             $cell_count += 1;
         }
@@ -92,3 +116,5 @@ class Main extends BaseController
         $mpdf->Output();
     }
 }
+
+?>
