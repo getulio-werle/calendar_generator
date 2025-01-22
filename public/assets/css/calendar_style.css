@@ -5,12 +5,14 @@ table {
 }
 
 th {
+    width: 14%;
     background-color: cornflowerblue;
     color: white;
 }
 
 td {
     padding: 5px;
+    font-size: large;
     font-weight: bold;
     text-align: start;
     vertical-align: top;

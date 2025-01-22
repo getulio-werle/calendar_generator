@@ -11,6 +11,7 @@ class Main extends BaseController
 
     public function make_calendar()
     {
+        // data validation
         // check if month as empty
         if (empty($_POST['month'])) {
             header('Location: index.php');
@@ -28,6 +29,7 @@ class Main extends BaseController
         if ($month < 01 || $month > 12) {
             header('Location: index.php');
         }
+        
         // construct calendar
         $months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
         $calendar = "<h1>" . $months[$month - 1] . " de " . $year . "</h1>";
@@ -37,7 +39,7 @@ class Main extends BaseController
                         <thead>
                             <tr>";
         foreach ($days_of_the_week as $day) {
-            $calendar .= "<th style='width: 14%;'>$day</th>";
+            $calendar .= "<th>$day</th>";
         }
         $calendar .=        "</tr>
                         </thead>
@@ -61,13 +63,23 @@ class Main extends BaseController
                     $calendar .= "<tr>";
                 }
             }
-            $calendar .= "<td>$i</td>";
+            // check if has events for the day
+            if (in_array($i, $_POST)) {
+                $event_day = array_search($i, $_POST);
+                $event_day_array = explode('_', $event_day);
+                $num = $event_day_array[count($event_day_array) - 1];
+                $event_name = $_POST["new_event_name_$num"];
+                $calendar .= "<td>$i<br>$event_name</td>";
+            } else {
+                $calendar .= "<td>$i</td>";
+            }
             $cell_count += 1;
         }
         // close the document
         $calendar .= "  </tbody>
                     </table>";
 
+        // html finished... 
         // gen and show pdf
         $stylesheet = file_get_contents('assets/css/calendar_style.css');
         $html = $calendar;

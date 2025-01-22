@@ -47,7 +47,7 @@
             new_event.classList.add('mb-3', 'row');
             new_event.innerHTML = `<p class="form-label">New event</p>
                                    <div class="col-8">
-                                        <input type="text" name="new_event_date_${new_event_count}" class="form-control col-6" placeholder="Event name">
+                                        <input type="text" name="new_event_name_${new_event_count}" class="form-control col-6" placeholder="Event name">
                                    </div>
                                    <div class="col-4">
                                         <input type="number" name="new_event_date_${new_event_count}" class="form-control col-6" min="1" max="31" placeholder="Event date">
