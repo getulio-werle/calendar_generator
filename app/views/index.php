@@ -15,7 +15,7 @@
         <div class="row justify-content-center">
             <div class="col-6 shadow-lg bg-light-emphasis p-5 rounded-5">
                 <h1 class="text-center mb-5">Calendar Generator</h1>
-                <form action="#" method="POST">
+                <form action="?ct=main&mt=make_calendar" method="POST">
                     <div class="mb-3">
                         <label for="month" class="form-label">Month</label>
                         <input type="month" name="month" class="form-control">
@@ -54,6 +54,7 @@
                                    </div>`;
             document.querySelector('#events').appendChild(new_event);
         }); 
+        
     </script>
 </body>
 

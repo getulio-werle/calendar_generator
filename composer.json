@@ -7,7 +7,9 @@
             "email": "getuliowerle10@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "mpdf/mpdf": "^8.2"
+    },
     "autoload": {
         "psr-4": {
             "calendar_generator\\Routers\\": ["app/routers"],
