@@ -64,37 +64,53 @@ class Main extends BaseController
                 }
             }
             // check if has events for the day
-            $event_name = null;
+            $events_names = [];
             if (in_array($i, $_POST)) {
-                $event_day = array_search($i, $_POST);
-                $event_day_array = explode('_', $event_day);
-                $num = $event_day_array[count($event_day_array) - 1];
-                $event_name = $_POST["new_event_name_$num"];
-                // verify if string > 7, if yes, break the line
-                // to fit in the cell
-                if (strlen($event_name) > 7) {
-                    $number_of_break_rows = intdiv(strlen($event_name), 7);
-                    for ($j = 1; $j <= $number_of_break_rows; $j++) {
-                        if ($j == 1) {
-                            $event_name = substr_replace($event_name, '<br>', 7, 0); // on first pass
-                        } else {
-                            $event_name = substr_replace($event_name, '<br>', (7 * $j) + 4, 0); // +4 because '<br>'
+                $events_of_day_keys = array_keys($_POST, $i);
+                $event_number = 1;
+                foreach ($events_of_day_keys as $event_key) {
+                    $event_day_array = explode('_', $event_key);
+                    $num = $event_day_array[count($event_day_array) - 1];
+                    $events_names[$event_number] = $_POST["new_event_name_$num"];
+                    // verify if string > 7, if yes, break the line
+                    // to fit in the cell
+                    if (strlen($events_names[$event_number]) > 7) {
+                        $number_of_break_rows = intdiv(strlen($events_names[$event_number]), 7);
+                        for ($j = 1; $j <= $number_of_break_rows; $j++) {
+                            if ($j == 1) {
+                                $events_names[$event_number] = substr_replace($events_names[$event_number], '<br>', 7, 0); // on first pass
+                            } else {
+                                $events_names[$event_number] = substr_replace($events_names[$event_number], '<br>', (7 * $j) + 4, 0); // +4 because '<br>'
+                            }
                         }
                     }
+                    $event_number += 1;
                 }
+                // print_r($events_names);
+                // die();
             }
             // check if day is sunday or saturday
             switch (date('w', strtotime("$year-$month-$i"))) {
                 case 0:
-                    $calendar .= "<td class='sunday'>$i<br>$event_name</td>";
+                    $calendar .= "<td class='sunday'>$i<br>";
+                    foreach ($events_names as $event_name) {
+                        $calendar .= $event_name . "<br>";
+                    }
+                    $calendar .= "</td>";
                     break;
-                
                 case 6:
-                    $calendar .= "<td class='saturday'>$i<br>$event_name</td>";
+                    $calendar .= "<td class='saturday'>$i<br>";
+                    foreach ($events_names as $event_name) {
+                        $calendar .= $event_name . "<br>";
+                    }
+                    $calendar .= "</td>";
                     break;
-                
                 default:
-                    $calendar .= "<td class='other_days'>$i<br>$event_name</td>";
+                    $calendar .= "<td class='other_days'>$i<br>";
+                    foreach ($events_names as $event_name) {
+                        $calendar .= $event_name . "<br>";
+                    }
+                    $calendar .= "</td>";
                     break;
             }
             $cell_count += 1;
