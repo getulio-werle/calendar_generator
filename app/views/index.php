@@ -11,21 +11,21 @@
 
 <body class="bg-light">
 
-    <div class="container my-5">
+    <div class="container px-5 my-5">
         <div class="row justify-content-center">
-            <div class="col-6 shadow-lg bg-light-emphasis p-5 rounded-5">
+            <div class="col-12 col-md-8 col-lg-6 shadow-lg bg-light-emphasis p-5 rounded-5">
                 <h1 class="text-center mb-5">Calendar Generator</h1>
                 <form action="?ct=main&mt=make_calendar" method="POST">
                     <div class="mb-3">
                         <label for="month" class="form-label">Month</label>
-                        <input type="month" name="month" class="form-control">
+                        <input type="month" name="month" class="form-control" required>
                     </div>
                     <div id="events"></div>
                     <div class="mb-5 text-center">
                         <button type="button" id="btn_add_event" class="btn btn-success">+ Add Event</button>
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="btn btn-primary">Generate</button>
+                        <button type="submit" class="btn btn-primary p-3">Generate</button>
                     </div>
                 </form>
             </div>
@@ -46,11 +46,11 @@
             let new_event = document.createElement('div');
             new_event.classList.add('mb-3', 'row');
             new_event.innerHTML = `<p class="form-label">New event</p>
-                                   <div class="col-8">
-                                        <input type="text" name="new_event_name_${new_event_count}" class="form-control col-6" placeholder="Event name">
+                                   <div class="col-12 col-sm-8 mb-3">
+                                        <input type="text" name="new_event_name_${new_event_count}" class="form-control" placeholder="Event name" required>
                                    </div>
-                                   <div class="col-4">
-                                        <input type="number" name="new_event_date_${new_event_count}" class="form-control col-6" min="1" max="31" placeholder="Event date">
+                                   <div class="col-12 col-sm-4">
+                                        <input type="number" name="new_event_date_${new_event_count}" class="form-control" min="1" max="31" placeholder="Event date" required>
                                    </div>`;
             document.querySelector('#events').appendChild(new_event);
         }); 
