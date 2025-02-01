@@ -12,4 +12,4 @@ O projeto utiliza uma arquitetura MVC, porém sem framework.
 
 ## Telas
 Tela inicial:
-![image](https://github.com/user-attachments/assets/533a1e28-412e-4813-a80d-3d7fe73ee417)
+![image](https://github.com/user-attachments/assets/96b0f561-5c9d-4eaa-bced-2f3ea5dab697)
