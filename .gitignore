@@ -4,4 +4,3 @@ composer.cache/
 *.log
 *.swp
 .env
-config.php

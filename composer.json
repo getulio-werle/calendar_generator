@@ -14,6 +14,10 @@
         "psr-4": {
             "calendar_generator\\Routers\\": ["app/routers"],
             "calendar_generator\\Controllers\\": ["app/controllers"]
-        }
+        },
+        "files": [
+            "app/config.php",
+            "app/helpers/functions.php"
+        ]
     }
 }

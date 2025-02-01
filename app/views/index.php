@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendar Generator</title>
+    <title><?= APP_NAME ?></title>
     <!-- bootstrap css -->
     <link rel="stylesheet" href="assets/bootstrap/bootstrap.min.css">
 </head>
@@ -14,18 +14,18 @@
     <div class="container px-5 my-5">
         <div class="row justify-content-center">
             <div class="col-12 col-md-8 col-lg-6 shadow-lg bg-light-emphasis p-5 rounded-5">
-                <h1 class="text-center mb-5">Calendar Generator</h1>
+                <h1 class="text-center mb-5"><?= APP_NAME ?></h1>
                 <form action="?ct=main&mt=make_calendar" method="POST">
-                    <div class="mb-3">
+                    <div class="mb-4">
                         <label for="month" class="form-label">Month</label>
                         <input type="month" name="month" class="form-control" required>
                     </div>
                     <div id="events"></div>
                     <div class="mb-5 text-center">
-                        <button type="button" id="btn_add_event" class="btn btn-success">+ Add Event</button>
+                        <button type="button" id="btn_add_event" class="btn btn-success p-3 w-50">+ Add Event</button>
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="btn btn-primary p-3">Generate</button>
+                        <button type="submit" class="btn btn-primary p-3 w-50">Generate</button>
                     </div>
                 </form>
             </div>
@@ -35,27 +35,8 @@
     <!-- bootstrap js -->
     <script src="assets/bootstrap/bootstrap.bundle.min.js"></script>
 
-    <script>
-
-        var new_event_count = 0;
-
-        // create new inputs to new events
-        document.querySelector('#btn_add_event').addEventListener('click', () => {
-            new_event_count += 1;
-            // create new inputs
-            let new_event = document.createElement('div');
-            new_event.classList.add('mb-3', 'row');
-            new_event.innerHTML = `<p class="form-label">New event</p>
-                                   <div class="col-12 col-sm-8 mb-3">
-                                        <input type="text" name="new_event_name_${new_event_count}" class="form-control" placeholder="Event name" required>
-                                   </div>
-                                   <div class="col-12 col-sm-4">
-                                        <input type="number" name="new_event_date_${new_event_count}" class="form-control" min="1" max="31" placeholder="Event date" required>
-                                   </div>`;
-            document.querySelector('#events').appendChild(new_event);
-        }); 
-        
-    </script>
+    <!-- script js -->
+    <script src="assets/js/script.js"></script>
 </body>
 
 </html>
