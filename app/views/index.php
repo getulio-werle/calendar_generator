@@ -17,8 +17,8 @@
                 <h1 class="text-center mb-5"><?= APP_NAME ?></h1>
                 <form action="?ct=main&mt=make_calendar" method="POST">
                     <div class="mb-4">
-                        <label for="month" class="form-label">Month</label>
-                        <input type="month" name="month" class="form-control" required>
+                        <label for="month_and_year" class="form-label">Month</label>
+                        <input type="month" name="month_and_year" class="form-control" required>
                     </div>
                     <div id="events"></div>
                     <div class="mb-5 text-center">

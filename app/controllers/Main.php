@@ -13,15 +13,15 @@ class Main extends BaseController
     {
         // data validation
         // check if month as empty
-        if (empty($_POST['month'])) {
+        if (empty($_POST['month_and_year'])) {
             return header('Location: index.php');
         }
         // get data from form
-        $pos = strpos($_POST['month'], '-');
+        $pos = strpos($_POST['month_and_year'], '-');
         // the first part is the year
-        $year = substr($_POST['month'], 0, $pos);
+        $year = substr($_POST['month_and_year'], 0, $pos);
         // the second part is the month
-        $month = substr($_POST['month'], $pos + 1);
+        $month = substr($_POST['month_and_year'], $pos + 1);
         // check if value of month and year is numeric 
         if (!is_numeric($year) || !is_numeric($month)) {
             return header('Location: index.php');
